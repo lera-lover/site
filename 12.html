@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>I LOVE YOU FOREVER</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: pink; /* розовый фон */
+        position: relative; /* для позиционирования сердечек */
+        overflow: hidden; /* чтобы сердечки не выходили за границы */
+    }
+
+    /* Стиль для кнопки */
+    button {
+      font-size: 17px;
+      padding: 1em 2.7em;
+      font-weight: 500;
+      background: #1f2937; /* темный фон */
+      color: white;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.6em;
+      cursor: pointer;
+    }
+
+    /* Внутренний градиент */
+    button .gradient {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 0.6em;
+      margin-top: -0.25em; 
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3)
+      );
+      pointer-events:none; 
+    }
+
+    /* Надпись внутри кнопки */
+    .label {
+      position: relative; 
+      z-index:1; /* чтобы было поверх градиента */
+    }
+
+    /* Эффект при наведении на кнопку */
+    .transition {
+      transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      transition-duration: 500ms;
+
+      background-color : rgba(16,185,129,0.6);
+      
+      border-radius :9999px; 
+      
+      width :0; 
+      height :0; 
+      
+      position :absolute; 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+left :50%; 
+top :50%; 
+transform :translate(-50%, -50%);
+}
+
+button:hover .transition {
+width :14em; 
+height :14em;
+
+}
+
+button:hover {
+transform :scale(0.97);
+}
+
+#text {
+margin-top :20px;
+
+font-size :18px;
+
+opacity :0;
+
+transform :translateY(20px);
+
+transition :
+opacity 0.5s ease,
+transform 0.5s ease;
+
+}
+#text.show {
+opacity :1;
+
+transform :translateY(0);
+}
+
+/* Контейнер для сердечек */
+#hearts-container {
+position:absolute;
+top :0;
+left :50%;
+transform :translateX(-50%);
+width :100%;
+height :calc(100% +50px);
+pointer-events:none; 
+overflow:hidden; 
+}
+
+/* Сердечко */
+.heart {
+position:absolute;
+/* Размер задается через style в JS */
+background-color:pink;
+/border-radius :50%;
+opacity:.8;
+/animation-name:bounceAndFade;
+/animation-duration:.8s;
+/animation-timing-function:ease-out;
+/animation-fill-mode forwards;
+/transform-origin:center bottom;
+/display:inline-block;
+/width:auto;height:auto;}
+@keyframes bounceAndFade {
+from {transform :translateY(100%) scale(1); opacity:.8;}
+to {transform :translateY(-10%) scale(.5); opacity :.0;}
+}
+</style>
+</head>
+<body>
+
+<!-- Кнопка -->
+<button id="myButton">
+   <div class="gradient"></div>
+   <span class="label">нажми на меня)</span>
+   <div class="transition"></div>
+</button>
+
+<!-- Контейнер для сердечек -->
+<div id="hearts-container"></div>
+
+<!-- Текст -->
+<div id="text">Это текст</div>
+
+<script>
+const button = document.getElementById('myButton');
+const textDiv = document.getElementById('text');
+const heartsContainer = document.getElementById('hearts-container');
+
+button.addEventListener('click', () => {
+    // Показать текст с любовью
+    textDiv.textContent = "Лера, я очень сильно люблю тебя! Ты моя радость, солнышко, любимая, зая. Ты делаешь мой мир ярче и поддерживаешь меня! Я никогда не найду девушки лучше тебя, и я очень надеюсь что наша с тобой любовь навсегда, потому что я не представляю свою жизнь без тебя, я тебя обожаю!!!!!!";
+    textDiv.classList.add('show');
+
+    // Создать сердечки
+    for(let i=0;i<15;i++){
+       createHeart();
+     }
+});
+
+// Функция создания сердечка
+function createHeart() {
+   const heart = document.createElement('div');
+   heart.className='heart';
+
+   const containerWidth = window.innerWidth || document.body.clientWidth;
+
+   const posX = Math.random() * containerWidth;
+
+   const sizePx = Math.random() * (20 -10) +10 + 'px';
+
+   heart.style.left=posX+'px';
+   heart.style.width=sizePx;
+   heart.style.height=sizePx;
+
+   heartsContainer.appendChild(heart);
+
+   setTimeout(()=>{
+       if (heartsContainer.contains(heart)){
+           heartsContainer.removeChild(heart);
+       }
+     },800);
+}
+</script>
+
+</body>
+</html>
